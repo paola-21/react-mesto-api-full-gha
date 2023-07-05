@@ -1,0 +1,12 @@
+.infoTooltip__image {
+    width: 120px;
+    height: 120px;
+    margin: 60px 155px 32px 155px;
+  }
+
+
+  @media (max-width: 1279px) {
+    .infoTooltip__image {
+      margin: 50px 80px 40px 80px;
+    }
+  }

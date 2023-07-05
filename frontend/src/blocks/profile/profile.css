@@ -1,0 +1,19 @@
+.profile {
+  max-width: 880px;
+  padding-top: 40px;
+  display: grid;
+  grid-template-columns: 120px 337px auto;
+  color: white;
+  align-items: center;
+  margin: auto;
+}
+
+@media (max-width: 924px) {
+  .profile {
+    width: 282px;
+    padding-top: 39.25px;
+    grid-template-columns: auto;
+    margin: auto;
+    justify-items: center;
+  }
+}

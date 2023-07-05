@@ -1,0 +1,32 @@
+.form__input-button {
+  width: 358px;
+  height: 50px;
+  background: #000000;
+  border-radius: 2px;
+  color: #FFFFFF;
+  font-family: 'Inter', "Arial ", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  margin: 31px 36px 15px 36px;
+  padding: 0;
+  border: 0;
+  transition: opacity 2s;
+}
+
+.form__input-button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+@media (max-width: 1279px) {
+  .form__input-button {
+    width: 238px;
+    height: 46px;
+    font-size: 14px;
+    line-height: 27px;
+    margin: 13px 22px 26px 22px;
+  }
+}

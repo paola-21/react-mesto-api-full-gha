@@ -1,0 +1,19 @@
+.profile__button-container {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /*opacity: 0.3;*/
+  margin: 0;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+}
+
+ 
+
+.profile__button-container:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.8);
+}
