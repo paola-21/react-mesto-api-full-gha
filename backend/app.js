@@ -32,7 +32,7 @@ const limiter = rateLimit(
 
 app.use(express.json());
 app.use(requestLogger);
-app.use('/api', router);
+app.use(router);
 app.use(helmet());
 app.use(limiter);
 app.use(errorLogger);
