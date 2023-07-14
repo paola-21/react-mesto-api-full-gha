@@ -37,12 +37,12 @@ function App() {
   function getCurrentUser() {
     api
       .getCurrentUser()
-      .then((profile) => {
-        setСurrentUser(profile);
+      .then((data) => {
+        setСurrentUser(data.data);
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
   }
 
   //загрузка профиля и аватара с сервера
@@ -72,23 +72,23 @@ function App() {
   }, [loggedIn]);
 
   //загрузка и обновление данные профиля
-  function handleUpdateUser(profile) {
+  function handleUpdateUser(data) {
     api
-      .editProfile(profile)
-      .then((profile) => {
-        setСurrentUser(profile);
+      .editProfile(data)
+      .then((data) => {
+        setСurrentUser(data.data);
         setIsEditProfilePopupOpen(false);
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
   }
   //загрузка и обновление данных аватара
   function handleUpdateAvatar(profile) {
     api
       .editAvatar(profile)
       .then((profile) => {
-        setСurrentUser(profile);
+        setСurrentUser(profile.data);
         setIsEditAvatarPopupOpen(false);
       })
       .catch((err) => {
@@ -126,7 +126,7 @@ function App() {
       .clickLike(card._id)
       .then((newCard) => {
         setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
+          state.map((c) => (c._id === card._id ? newCard.data : c))
         );
       })
       .catch((err) => {
@@ -140,7 +140,7 @@ function App() {
       .deleteLike(card._id)
       .then((newCard) => {
         setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
+          state.map((c) => (c._id === card._id ? newCard.data : c))
         );
       })
       .catch((err) => {
@@ -217,7 +217,7 @@ function App() {
 
   //проверка токена
   function handleTokenCheck() {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     if (token) {
       apiAuth
         .checkToken(token)
@@ -230,14 +230,15 @@ function App() {
         });
     }
   }
+
   const handleLogin = ({ email }) => {
     setLoggedIn(true);
     setUserData({ email });
   };
 
   React.useEffect(() => {
-    handleTokenCheck();
-  }, []);
+      handleTokenCheck();
+  }, [loggedIn]);
 
   function signOut() {
     localStorage.removeItem("token");

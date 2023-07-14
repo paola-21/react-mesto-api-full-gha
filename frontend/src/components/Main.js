@@ -1,10 +1,7 @@
 import React from "react";
 import editButton from "../images/editButton.svg";
-import { api } from "../utils/Api.js";
 import Card from "./Card.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
-import EditProfilePopup from "./EditProfilePopup.js";
-//import { useContext } from 'react';
 
 function Main({
   onEditAvatar,
@@ -17,7 +14,7 @@ function Main({
   onCardDislike,
 }) {
   const currentUser = React.useContext(CurrentUserContext);
-
+  
   return (
     <main className="container">
       <section className="profile">

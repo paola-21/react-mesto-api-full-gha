@@ -21,6 +21,7 @@ class Api {
  getCard () {
     const p = fetch(`${this._basePath}/cards`, {
         headers: this._getHeaders(),
+        credentials: 'include',
     });
     return p.then(this._getJson); 
  }
@@ -29,25 +30,28 @@ class Api {
     return fetch(`${this._basePath}/cards`, {
         method: "POST",
         headers: this._getHeaders(),
-        body: JSON.stringify(newItem)
+        body: JSON.stringify(newItem),
+        credentials: 'include',
     }).then(this._getJson); 
    }
 
   getCurrentUser() {
     return fetch(`${this._basePath}/users/me`, {
         headers: this._getHeaders(),
+        credentials: 'include',
       }).then(this._getJson);
    }
 
-  editProfile(profile) {
+  editProfile(data) {
    return fetch(`${this._basePath}/users/me`, {
       method: "PATCH",
       headers: this._getHeaders(),
       body: JSON.stringify({
-         name: profile.name,
-         about: profile.about,
-         avatar: profile.avatar
-      })
+         name: data.name,
+         about: data.about,
+         avatar: data.avatar
+      }),
+      credentials: 'include',
     }).then(this._getJson);
   }
 
@@ -55,7 +59,8 @@ class Api {
    return fetch(`${this._basePath}/users/me/avatar`, {
        method: "PATCH",
        headers: this._getHeaders(),
-       body: JSON.stringify(avatar)
+       body: JSON.stringify(avatar),
+       credentials: 'include',
    }).then(this._getJson);
   }
 
@@ -63,6 +68,7 @@ class Api {
    return fetch(`${this._basePath}/cards/${id}`, {
      method: "DELETE",
      headers: this._getHeaders(),
+     credentials: 'include',
    }).then(this._getJson);
  }
 
@@ -70,6 +76,7 @@ class Api {
    return fetch(`${this._basePath}/cards/${id}/likes`, {
       method: "PUT",
       headers: this._getHeaders(),
+      credentials: 'include',
     }).then(this._getJson);
   }
 
@@ -77,11 +84,17 @@ class Api {
    return fetch(`${this._basePath}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._getHeaders(),
+      credentials: 'include',
     }).then(this._getJson);
   }
 
 }
 
-const api = new Api('https://mesto.nomoreparties.co/v1/cohort-61', 'd2a883d2-7a67-4338-99ad-75e867144356');
+const api = new Api('http://localhost:3000', `Bearer ${localStorage.getItem('token')}`);
+
+// const api = new Api({
+//    basePath: 'http://localhost:3000',
+//    token: localStorage.getItem('token')
+// })
 
 export {api};

@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const token = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const ErrNotAuth = require('../utils/NotErrAuth');
 const DuplicateEmail = require('../utils/DublicateEmail');// 400
@@ -35,12 +35,12 @@ const login = (req, res, next) => {
       bcrypt.compare(String(password), user.password)
         .then((isValidUser) => {
           if (isValidUser) {
-            const jwt = token.sign({ _id: user._id }, 'some-secret-key');
-            res.cookie('jwt', jwt, {
+            const token = jwt.sign({ _id: user._id }, process.env['JWT_SECRET']);
+            res.cookie('token', token, {
               maxAge: 360000,
               httpOnly: true,
             });
-            res.send({ data: user.deletePassword() });
+            res.send({ token });
           } else {
             return next(new TokenError('Неправильные почта или пароль'));
           }

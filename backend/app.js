@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { requestLogger, errorLogger } = require('./middlwares/logger');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -8,6 +10,7 @@ const { errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
 const router = require('./routes');
 const errorHandler = require('./middlwares/error-handler');
+const cors = require('cors');
 
 const app = express();
 
@@ -32,13 +35,18 @@ const limiter = rateLimit(
 
 app.use(express.json());
 app.use(requestLogger);
+app.use(cors({
+  credentials: true,
+  origin: 'http://localhost:3001',
+}));
 app.use(router);
 app.use(helmet());
 app.use(limiter);
 app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
+//app.use(cors());
 
 app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}!!!`);
+  console.log(`App listening on port ${PORT}`);
 });
