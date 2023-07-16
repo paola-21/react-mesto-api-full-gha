@@ -10,12 +10,13 @@ const auth = (req, res, next) => {
   }
 
   try {
-    payload = jwt.verify(token, process.env['JWT_SECRET'], { expiresIn: '7d' });
+    payload = jwt.verify(token, process.env['JWT_SECRET']);
   } catch (err) {
-    //next(new TokenError('Необходима авторизация'));
+    next(new TokenError('Необходима авторизация'));
     next(err);
   }
   req.user = payload;
   next();
 };
+
 module.exports = auth;
