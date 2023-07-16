@@ -45,7 +45,6 @@ app.use(limiter);
 app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
-//app.use(cors());
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);

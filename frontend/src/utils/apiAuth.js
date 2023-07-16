@@ -18,15 +18,23 @@ export const register = (email, password) => {
 };
 
 export const authorize = (email, password) => {
+  //localStorage.getItem('token');
   return fetch(`${BASE_URL}/signin`, {
     credentials: 'include',
     method: "POST",
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({ email, password }),
-  }).then(getResponseData);
+  })
+  // .then(({user, token}) => {
+  //   if (user){
+  //     localStorage.setItem('token', token);
+  //     return token;
+  //   }
+  // })
+  .then(getResponseData);
 };
 
 export const checkToken = (token) => {
@@ -44,4 +52,3 @@ export const checkToken = (token) => {
   // .then((res) => getResponseData(res))
   // .then((userData) => userData)
 };
-debugger

@@ -1,13 +1,11 @@
 class Api {
-  constructor (basePath, token) {
+  constructor (basePath) {
     this._basePath = basePath;
-    this._token = token;
  }
 
  _getHeaders() {
     return { 
-    "Content-Type": "application/json",
-    authorization: this._token,
+    "Content-Type": "application/json"
     };
  }
 
@@ -90,11 +88,6 @@ class Api {
 
 }
 
-const api = new Api('http://localhost:3000', `Bearer ${localStorage.getItem('token')}`);
-
-// const api = new Api({
-//    basePath: 'http://localhost:3000',
-//    token: localStorage.getItem('token')
-// })
+const api = new Api('http://localhost:3000');
 
 export {api};

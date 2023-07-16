@@ -34,9 +34,9 @@ function App() {
 
   const navigate = useNavigate();
 
-  function getCurrentUser() {
+  function getCurrentUser(newData) {
     api
-      .getCurrentUser()
+      .getCurrentUser(newData, localStorage.getItem('token'))
       .then((data) => {
         setСurrentUser(data.data);
       })
@@ -74,9 +74,9 @@ function App() {
   //загрузка и обновление данные профиля
   function handleUpdateUser(data) {
     api
-      .editProfile(data)
-      .then((data) => {
-        setСurrentUser(data.data);
+      .editProfile(data, localStorage.getItem('token'))
+      .then((newUser) => {
+        setСurrentUser(newUser.data);
         setIsEditProfilePopupOpen(false);
       })
       .catch((err) => {
@@ -85,6 +85,7 @@ function App() {
   }
   //загрузка и обновление данных аватара
   function handleUpdateAvatar(profile) {
+    //setLoggedIn(true);
     api
       .editAvatar(profile)
       .then((profile) => {
@@ -201,19 +202,23 @@ function App() {
   }
 
   function handleAuthorize(email, password) {
+    const token = localStorage.getItem('token');
     apiAuth
       .authorize(email, password)
       .then((data) => {
         if (data.token) {
-          localStorage.setItem("token", data.token);
           handleLogin({ email });
+          localStorage.setItem('token', data.token);
+          //handleLogin({ email });
+          // setCards(newCard.data);
+          // setСurrentUser(data.data);
           navigate("/mesto-react", { replace: true });
         }
       })
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   //проверка токена
   function handleTokenCheck() {
@@ -222,26 +227,79 @@ function App() {
       apiAuth
         .checkToken(token)
         .then((user) => {
-          handleLogin(user.data);
           navigate("/mesto-react", { replace: true });
+          handleLogin(user.data);
+          //setCards(newCard.data);
+          //handleUpdateUser(data)
+          //setСurrentUser(data);
         })
         .catch((err) => {
           console.log(err);
-        });
+        })
     }
-  }
+  };
+
+
+  // function handleTokenCheck()  {
+  //   const token = localStorage.getItem('token');
+  //   if (token){
+  //     apiAuth
+  //     .checkToken(token)
+  //     .then((res) => {
+  //         if (res){
+  //                 // здесь можем получить данные пользователя!
+  //         const userData = {
+  //           email: res.email,
+  //           name: res.name,
+  //           avatar: res.avatar,
+  //           about: res.about,
+  //         }
+                  
+  //           //setCards(newCard.data);
+  //           setСurrentUser(userData);
+  //           //setUserData({ email });
+  //         // const userData = {
+  //         //   username: res.username,
+  //         //   email: res.email
+  //         // }
+  //         //handleLogin(user.data);
+  //                     // авторизуем пользователя
+  //           //setUserData(userData)
+  //           setLoggedIn(true);
+  //           navigate("/mesto-react", { replace: true });
+  //         }
+  //       });
+  //   }
+  // } 
+
+
+  React.useEffect(() => {
+    localStorage.getItem('token');
+    handleTokenCheck();
+}, [loggedIn]);
+
+// React.useEffect(() => {
+//   const token = localStorage.getItem('token');
+//   if (token && loggedIn) {
+//     api.getCurrentUser(token)
+//       .then(([newCard, data]) => {
+//         setCards(newCard.data);
+//         setСurrentUser(data.data)
+//       })
+//       .catch(err => console.log(err))
+//   }
+// }, [loggedIn])
 
   const handleLogin = ({ email }) => {
     setLoggedIn(true);
     setUserData({ email });
+
   };
 
-  React.useEffect(() => {
-      handleTokenCheck();
-  }, [loggedIn]);
+
 
   function signOut() {
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     navigate("/sign-up", { replace: true });
   }
 
