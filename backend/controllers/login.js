@@ -37,7 +37,7 @@ const login = (req, res, next) => {
           if (isValidUser) {
             const token = jwt.sign({ _id: user._id }, process.env['JWT_SECRET'], {expiresIn: '7d'});
             res.cookie('token', token, {
-              maxAge: 360000 * 7 * 24,
+              maxAge: 360000 * 24 * 7,
               httpOnly: true,
             });
             res.send({ token });
