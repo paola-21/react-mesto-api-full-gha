@@ -5,9 +5,9 @@ const auth = (req, res, next) => {
   const { token } = req.cookies;
   let payload;
 
-  if (!token) {
-    next(new TokenError('Необходима авторизация'));
-  }
+  // if (!token) {
+  //   next(new TokenError('Необходима авторизация'));
+  // }
 
   try {
     payload = jwt.verify(token, process.env['JWT_SECRET'], { expiresIn: '7d' });
