@@ -189,6 +189,7 @@ function App() {
 
   //регистрация
   function handleRegister(email, password) {
+
     apiAuth
       .register(email, password)
       .then(() => {
@@ -300,6 +301,7 @@ function App() {
 
   function signOut() {
     localStorage.removeItem('token');
+    setLoggedIn(false);
     navigate("/sign-up", { replace: true });
   }
 
