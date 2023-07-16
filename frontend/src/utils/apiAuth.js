@@ -18,7 +18,6 @@ export const register = (email, password) => {
 };
 
 export const authorize = (email, password) => {
-  //localStorage.getItem('token');
   return fetch(`${BASE_URL}/signin`, {
     credentials: 'include',
     method: "POST",
@@ -28,12 +27,6 @@ export const authorize = (email, password) => {
     },
     body: JSON.stringify({ email, password }),
   })
-  // .then(({user, token}) => {
-  //   if (user){
-  //     localStorage.setItem('token', token);
-  //     return token;
-  //   }
-  // })
   .then(getResponseData);
 };
 
@@ -49,6 +42,4 @@ export const checkToken = (token) => {
   })
     .then((res) => res.json())
     .then((data) => data);
-  // .then((res) => getResponseData(res))
-  // .then((userData) => userData)
 };

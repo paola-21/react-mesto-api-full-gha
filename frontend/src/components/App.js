@@ -210,9 +210,6 @@ function App() {
         if (data.token) {
           handleLogin({ email });
           localStorage.setItem('token', data.token);
-          //handleLogin({ email });
-          // setCards(newCard.data);
-          // setСurrentUser(data.data);
           navigate("/mesto-react", { replace: true });
         }
       })
@@ -230,9 +227,6 @@ function App() {
         .then((user) => {
           navigate("/mesto-react", { replace: true });
           handleLogin(user.data);
-          //setCards(newCard.data);
-          //handleUpdateUser(data)
-          //setСurrentUser(data);
         })
         .catch((err) => {
           console.log(err);
@@ -240,64 +234,16 @@ function App() {
     }
   };
 
-
-  // function handleTokenCheck()  {
-  //   const token = localStorage.getItem('token');
-  //   if (token){
-  //     apiAuth
-  //     .checkToken(token)
-  //     .then((res) => {
-  //         if (res){
-  //                 // здесь можем получить данные пользователя!
-  //         const userData = {
-  //           email: res.email,
-  //           name: res.name,
-  //           avatar: res.avatar,
-  //           about: res.about,
-  //         }
-                  
-  //           //setCards(newCard.data);
-  //           setСurrentUser(userData);
-  //           //setUserData({ email });
-  //         // const userData = {
-  //         //   username: res.username,
-  //         //   email: res.email
-  //         // }
-  //         //handleLogin(user.data);
-  //                     // авторизуем пользователя
-  //           //setUserData(userData)
-  //           setLoggedIn(true);
-  //           navigate("/mesto-react", { replace: true });
-  //         }
-  //       });
-  //   }
-  // } 
-
-
   React.useEffect(() => {
     localStorage.getItem('token');
     handleTokenCheck();
 }, [loggedIn]);
-
-// React.useEffect(() => {
-//   const token = localStorage.getItem('token');
-//   if (token && loggedIn) {
-//     api.getCurrentUser(token)
-//       .then(([newCard, data]) => {
-//         setCards(newCard.data);
-//         setСurrentUser(data.data)
-//       })
-//       .catch(err => console.log(err))
-//   }
-// }, [loggedIn])
 
   const handleLogin = ({ email }) => {
     setLoggedIn(true);
     setUserData({ email });
 
   };
-
-
 
   function signOut() {
     localStorage.removeItem('token');
