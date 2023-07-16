@@ -7,12 +7,11 @@ const NotFoundError = require('../utils/NotFoundError');
 
 router.use('', loginRouts);
 
-
+router.use(auth);
 
 router.use('/users', userRouts);
 
 router.use('/cards', cardRouts);
-router.use(auth);
 
 router.use('/', (req, res, next) => {
   next(new NotFoundError('Страница не найдена'));
