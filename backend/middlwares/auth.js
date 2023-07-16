@@ -10,7 +10,7 @@ const auth = (req, res, next) => {
   }
 
   try {
-    payload = jwt.verify(token, process.env['JWT_SECRET']);
+    payload = jwt.verify(token, process.env['JWT_SECRET'], { expiresIn: '7d' });
   } catch (e) {
     next(new TokenError('Необходима авторизация'));
     next(e);
