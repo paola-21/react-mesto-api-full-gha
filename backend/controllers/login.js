@@ -40,7 +40,7 @@ const login = (req, res, next) => {
               maxAge: 360000 * 24 * 7,
               httpOnly: true,
             });
-            res.send({ token });
+            res.send({ token: jwt.sign({ _id: user._id }, process.env['JWT_SECRET'], { expiresIn: '7d' }) });
           } else {
             return next(new TokenError('Неправильные почта или пароль'));
           }
