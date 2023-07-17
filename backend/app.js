@@ -38,7 +38,7 @@ app.use(cors({
   credentials: true,
   origin: 'http://localhost:3001',
 }));
-app.use(router);
+app.use('/api', router);
 app.use(helmet());
 app.use(limiter);
 app.use(errorLogger);
