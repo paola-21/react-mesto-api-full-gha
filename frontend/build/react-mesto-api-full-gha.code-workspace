@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "../../../practicum/react-mesto-api-full-gha"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
