@@ -36,7 +36,7 @@ app.use(express.json());
 app.use(requestLogger);
 app.use(cors({
   credentials: true,
-  origin: 'https://paola.mesto.nomoreparties.sbs',
+  origin: 'http://paola.mesto.nomoreparties.sbs',
 }));
 app.use('/', router);
 app.use(helmet());

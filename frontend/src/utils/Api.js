@@ -88,6 +88,6 @@ class Api {
 
 }
 
-const api = new Api('http://paola.mesto.nomoreparties.sbs');
+const api = new Api('http://api.paola.mesto.nomoreparties.sbs');
 
 export {api};
