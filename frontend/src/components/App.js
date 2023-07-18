@@ -18,7 +18,7 @@ import imageRegister from "../images/Register.png";
 import imageNoRegister from "../images/NoRegister.png";
 import ProtectedRoute from "./ProtectedRoute.js";
 
-export default function App() {
+function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
@@ -378,4 +378,4 @@ export default function App() {
   );
 }
 
-//export default App;
+export default App;
