@@ -203,7 +203,6 @@ function App() {
   }
 
   function handleAuthorize(email, password) {
-    const token = localStorage.getItem('token');
     apiAuth
       .authorize(email, password)
       .then((data) => {
