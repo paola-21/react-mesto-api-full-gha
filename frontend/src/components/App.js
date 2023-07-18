@@ -18,7 +18,7 @@ import imageRegister from "../images/Register.png";
 import imageNoRegister from "../images/NoRegister.png";
 import ProtectedRoute from "./ProtectedRoute.js";
 
-function App() {
+export default function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
@@ -236,7 +236,7 @@ function App() {
   React.useEffect(() => {
     localStorage.getItem('token');
     handleTokenCheck();
-}, [loggedIn]);
+  }, [loggedIn]);
 
   const handleLogin = ({ email }) => {
     setLoggedIn(true);
@@ -378,4 +378,4 @@ function App() {
   );
 }
 
-export default App;
+//export default App;
