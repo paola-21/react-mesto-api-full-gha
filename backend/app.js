@@ -36,6 +36,7 @@ app.use(express.json());
 app.use(requestLogger);
 app.use(cors({
   credentials: true,
+  origin: 'http://paola.mesto.nomoreparties.sbs',
 }));
 
 // app.use(cors());
