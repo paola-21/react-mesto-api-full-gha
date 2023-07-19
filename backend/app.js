@@ -34,12 +34,12 @@ const limiter = rateLimit(
 
 app.use(express.json());
 app.use(requestLogger);
-// app.use(cors({
-//   credentials: true,
-//   origin: 'http://paola.mesto.nomoreparties.sbs',
-// }));
+app.use(cors({
+  credentials: true,
+  origin: 'http://paola.mesto.nomoreparties.sbs',
+}));
 
-app.use(cors());
+// app.use(cors());
 
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -55,5 +55,5 @@ app.use(errors());
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}!!!`);
+  console.log(`App listening on port ${PORT}`);
 });
