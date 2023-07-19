@@ -1,5 +1,6 @@
 require('dotenv').config();
 const cors = require('cors');
+const cookieSession = require('cookie-session');
 const { requestLogger, errorLogger } = require('./middlwares/logger');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -34,6 +35,15 @@ const limiter = rateLimit(
 
 app.use(express.json());
 app.use(requestLogger);
+
+app.use(
+  cookieSession({
+    sameSite: 'none',
+    secure: true,
+    httpOnly: true,
+  }),
+);
+
 app.use(cors({
   credentials: true,
   origin: 'http://paola.mesto.nomoreparties.sbs',
