@@ -36,7 +36,7 @@ class Api {
   getCurrentUser() {
     return fetch(`${this._basePath}/users/me`, {
         headers: this._getHeaders(),
-        //credentials: 'include',
+        credentials: 'include',
       }).then(this._getJson);
    }
 
