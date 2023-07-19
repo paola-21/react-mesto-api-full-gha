@@ -40,7 +40,7 @@ app.use(requestLogger);
 // }));
 
 app.use(cors());
-app.use('/', router);
+app.use('/api', router);
 app.use(helmet());
 app.use(limiter);
 app.use(errorLogger);
