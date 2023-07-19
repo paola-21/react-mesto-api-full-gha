@@ -46,7 +46,7 @@ app.use(
 
 app.use(cors({
   credentials: true,
-  origin: 'http://paola.mesto.nomoreparties.sbs',
+  origin: 'https://paola.mesto.nomoreparties.sbs',
 }));
 
 // app.use(cors());

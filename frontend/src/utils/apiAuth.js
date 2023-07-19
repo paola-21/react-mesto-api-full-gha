@@ -1,4 +1,4 @@
-export const BASE_URL = "http://api.paola.mesto.nomoreparties.sbs";
+export const BASE_URL = "https://api.paola.mesto.nomoreparties.sbs";
 
 const getResponseData = (res) => {
   if (res.ok) {
