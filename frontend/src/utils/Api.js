@@ -19,7 +19,7 @@ class Api {
  getCard () {
     const p = fetch(`${this._basePath}/cards`, {
         headers: this._getHeaders(),
-        credentials: 'include',
+        //credentials: 'include',
     });
     return p.then(this._getJson); 
  }
@@ -29,14 +29,14 @@ class Api {
         method: "POST",
         headers: this._getHeaders(),
         body: JSON.stringify(newItem),
-        credentials: 'include',
+        //credentials: 'include',
     }).then(this._getJson); 
    }
 
   getCurrentUser() {
     return fetch(`${this._basePath}/users/me`, {
         headers: this._getHeaders(),
-        credentials: 'include',
+        //credentials: 'include',
       }).then(this._getJson);
    }
 
@@ -49,7 +49,7 @@ class Api {
          about: data.about,
          avatar: data.avatar
       }),
-      credentials: 'include',
+      //credentials: 'include',
     }).then(this._getJson);
   }
 
@@ -58,7 +58,7 @@ class Api {
        method: "PATCH",
        headers: this._getHeaders(),
        body: JSON.stringify(avatar),
-       credentials: 'include',
+       //credentials: 'include',
    }).then(this._getJson);
   }
 
@@ -66,7 +66,7 @@ class Api {
    return fetch(`${this._basePath}/cards/${id}`, {
      method: "DELETE",
      headers: this._getHeaders(),
-     credentials: 'include',
+     //credentials: 'include',
    }).then(this._getJson);
  }
 
@@ -74,7 +74,7 @@ class Api {
    return fetch(`${this._basePath}/cards/${id}/likes`, {
       method: "PUT",
       headers: this._getHeaders(),
-      credentials: 'include',
+      //credentials: 'include',
     }).then(this._getJson);
   }
 
@@ -82,7 +82,7 @@ class Api {
    return fetch(`${this._basePath}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._getHeaders(),
-      credentials: 'include',
+      //credentials: 'include',
     }).then(this._getJson);
   }
 
