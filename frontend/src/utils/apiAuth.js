@@ -31,6 +31,7 @@ export const authorize = (email, password) => {
 };
 
 export const checkToken = (token) => {
+  //const token = localStorage.getItem('token');
   return fetch(`${BASE_URL}/users/me`, {
     //credentials: 'include',
     method: "GET",

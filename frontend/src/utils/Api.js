@@ -1,11 +1,13 @@
 class Api {
-  constructor (basePath) {
+  constructor (basePath, token) {
     this._basePath = basePath;
+    this._token = token;
  }
 
  _getHeaders() {
     return { 
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
+    authorization: this._token,
     };
  }
 
@@ -36,7 +38,7 @@ class Api {
   getCurrentUser() {
     return fetch(`${this._basePath}/users/me`, {
         headers: this._getHeaders(),
-        credentials: 'include',
+        //credentials: 'include',
       }).then(this._getJson);
    }
 
@@ -88,6 +90,6 @@ class Api {
 
 }
 
-const api = new Api('http://api.paola.mesto.nomoreparties.sbs');
+const api = new Api('http://api.paola.mesto.nomoreparties.sbs', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI3ZWY1M2ZiYjhkMDE1YTZiOGZjNjkiLCJpYXQiOjE2ODk3OTMyNjYsImV4cCI6MTY5MDM5ODA2Nn0.a9Eh2pKXu7Zemv9WVHWRBLpQMqMY0ag44DSiLIHa3hg');
 
 export {api};
