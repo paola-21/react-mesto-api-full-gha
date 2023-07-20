@@ -20,7 +20,7 @@ const createCards = (req, res, next) => {
     .then((card) => res.status(201).send(card))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return next(new ErrNotAuth('Вы ввели некоректные данные'));
+        throw new ErrNotAuth('Вы ввели некоректные данные');
       }
       next(err);
     });
@@ -39,11 +39,11 @@ const deleteCardbyId = (req, res, next) => {
           })
           .catch(next);
       }
-      next(new NotAccess('Невозможно удалить карточку'));
+      throw new NotAccess('Невозможно удалить карточку');
     })
     .catch((e) => {
       if (e.name === 'CastError') {
-        next(new ErrNotAuth('Вы ввели некоректные данные'));
+        throw new ErrNotAuth('Вы ввели некоректные данные');
       } else {
         next(e);
       }
@@ -60,7 +60,7 @@ const likeCard = (req, res, next) => {
     .then((card) => res.status(200).send({ data: card }))
     .catch((err) => {
       if (err.message.includes('Cast to ObjectId failed for value')) {
-        return next(new ErrNotAuth('Передан несуществующий _id карточки'));
+        throw new ErrNotAuth('Передан несуществующий _id карточки');
       }
       next(err);
     });
@@ -76,7 +76,7 @@ const dislikeCard = (req, res, next) => {
     .then((card) => res.status(200).send({ data: card }))
     .catch((err) => {
       if (err.message.includes('Cast to ObjectId failed for value')) {
-        return next(new ErrNotAuth('Передан несуществующий _id карточки'));
+        throw new ErrNotAuth('Передан несуществующий _id карточки');
       }
       next(err);
     });
