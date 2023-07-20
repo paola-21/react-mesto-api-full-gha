@@ -18,7 +18,6 @@ function Register({ onRegister }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = formValue;
-
     onRegister(email, password);
   };
 

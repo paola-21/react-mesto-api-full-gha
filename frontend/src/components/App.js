@@ -213,6 +213,7 @@ function App() {
         }
       })
       .catch((err) => {
+        handleInfoTooltipError();
         console.log(err);
       });
   };
