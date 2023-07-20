@@ -9,6 +9,10 @@ router.use('', loginRouts);
 
 router.use(auth);
 
+router.get('/token', (req, res) => {
+  res.clearCookie('jwt').send({ message: 'Выход' });
+});
+
 router.use('/users', userRouts);
 
 router.use('/cards', cardRouts);

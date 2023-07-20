@@ -8,7 +8,7 @@ const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
-const rateLimit = require('express-rate-limit');
+const limiter = require('./utils/limiter');
 const router = require('./routes');
 const errorHandler = require('./middlwares/error-handler');
 
@@ -23,15 +23,6 @@ mongoose.connect(DB_URL, {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-
-const limiter = rateLimit(
-  {
-    windowMs: 15 * 60 * 1000,
-    max: 100,
-    standardHeaders: true,
-    legacyHeaders: false,
-  },
-);
 
 app.use(express.json());
 app.use(requestLogger);
