@@ -20,7 +20,7 @@ const createCards = (req, res, next) => {
     .then((card) => res.status(201).send(card))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new ErrNotAuth('Вы ввели некоректные данные'));
+        return next(new ErrNotAuth('Вы ввели некоректные данные'));
       }
       next(err);
     });
@@ -33,7 +33,7 @@ const deleteCardbyId = (req, res, next) => {
     })
     .then((card) => {
       if (card.owner.toString() === req.user._id) {
-        Card.findByIdAndRemove(card._id)
+        return Card.findByIdAndRemove(card._id)
           .then(() => {
             res.status(200).send({ data: card });
           })
@@ -60,7 +60,7 @@ const likeCard = (req, res, next) => {
     .then((card) => res.status(200).send({ data: card }))
     .catch((err) => {
       if (err.message.includes('Cast to ObjectId failed for value')) {
-        next(new ErrNotAuth('Передан несуществующий _id карточки'));
+        return next(new ErrNotAuth('Передан несуществующий _id карточки'));
       }
       next(err);
     });
@@ -76,7 +76,7 @@ const dislikeCard = (req, res, next) => {
     .then((card) => res.status(200).send({ data: card }))
     .catch((err) => {
       if (err.message.includes('Cast to ObjectId failed for value')) {
-        next(new ErrNotAuth('Передан несуществующий _id карточки'));
+        return next(new ErrNotAuth('Передан несуществующий _id карточки'));
       }
       next(err);
     });
