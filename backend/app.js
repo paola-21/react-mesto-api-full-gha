@@ -1,6 +1,6 @@
 require('dotenv').config();
-const cors = require('cors');
-const cookieSession = require('cookie-session');
+// const cors = require('cors');
+// const cookieSession = require('cookie-session');
 const { requestLogger, errorLogger } = require('./middlwares/logger');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -44,10 +44,10 @@ app.use(requestLogger);
 //   }),
 // );
 
-app.use(cors({
-  credentials: true,
-  origin: 'https://paola.mesto.nomoreparties.sbs',
-}));
+// app.use(cors({
+//   credentials: true,
+//   origin: 'https://paola.mesto.nomoreparties.sbs',
+// }));
 
 // app.use(cors());
 
