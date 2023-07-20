@@ -36,13 +36,13 @@ const limiter = rateLimit(
 app.use(express.json());
 app.use(requestLogger);
 
-app.use(
-  cookieSession({
-    sameSite: 'none',
-    secure: true,
-    httpOnly: true,
-  }),
-);
+// app.use(
+//   cookieSession({
+//     sameSite: 'none',
+//     secure: true,
+//     httpOnly: true,
+//   }),
+// );
 
 app.use(cors({
   credentials: true,

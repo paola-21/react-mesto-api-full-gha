@@ -90,6 +90,6 @@ class Api {
 
 }
 
-const api = new Api('https://api.paola.mesto.nomoreparties.sbs', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI3ZWY1M2ZiYjhkMDE1YTZiOGZjNjkiLCJpYXQiOjE2ODk3OTMyNjYsImV4cCI6MTY5MDM5ODA2Nn0.a9Eh2pKXu7Zemv9WVHWRBLpQMqMY0ag44DSiLIHa3hg');
+const api = new Api('https://api.paola.mesto.nomoreparties.sbs', `Bearer ${localStorage.getItem('token')}`);
 
 export {api};
