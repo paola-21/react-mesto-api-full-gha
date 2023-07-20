@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.105.234
+IP 51.250.105.234
 
 Frontend https://paola.mesto.nomoreparties.sbs
 
