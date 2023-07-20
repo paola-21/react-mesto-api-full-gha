@@ -36,13 +36,8 @@ const limiter = rateLimit(
 app.use(express.json());
 app.use(requestLogger);
 
-// app.use(
-//   cookieSession({
-//     sameSite: 'none',
-//     secure: true,
-//     httpOnly: true,
-//   }),
-// );
+app.use(helmet());
+app.use(limiter);
 
 app.use(cors({
   credentials: true,
@@ -52,8 +47,6 @@ app.use(cors({
     'http://localhost:3000'],
 }));
 
-// app.use(cors());
-
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
@@ -61,8 +54,6 @@ app.get('/crash-test', () => {
 });
 
 app.use(router);
-app.use(helmet());
-app.use(limiter);
 app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);

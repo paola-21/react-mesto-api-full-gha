@@ -20,7 +20,7 @@ const createUser = (req, res, next) => {
         .catch((err) => {
           if (err.code === 11000) {
             return next(new DuplicateEmail('Пользователь с такой почтой уже существует'));
-          } if (err.name === 'ValidationError' || err.name === 'ValidatorError') {
+          } if (err.name === 'ValidationError') {
             return next(new ErrNotAuth('Переданы некоректные данные'));
           }
           next(err);

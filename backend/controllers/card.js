@@ -8,9 +8,6 @@ const getCards = async (req, res, next) => {
     const card = await Card.find({});
     res.status(200).send(card);
   } catch (err) {
-    if (err.message.includes('validation failed')) {
-      return next(new ErrNotAuth('Вы ввели некоректные данные'));
-    }
     next(err);
   }
 };
