@@ -20,11 +20,12 @@ const createUser = (req, res, next) => {
         })
         .catch((err) => {
           if (err.code === 11000) {
-            return next(new DuplicateEmail('Пользователь с такой почтой уже существует'));
+            next(new DuplicateEmail('Пользователь с такой почтой уже существует'));
           } if (err.name === 'ValidationError') {
-            return next(new ErrNotAuth('Переданы некоректные данные'));
+            next(new ErrNotAuth('Переданы некоректные данные'));
+          } else {
+            next(err);
           }
-          next(err);
         });
     })
     .catch(next);
@@ -46,7 +47,7 @@ const login = (req, res, next) => {
             });
             res.send({ token: jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' }) });
           } else {
-            return next(new TokenError('Неправильные почта или пароль'));
+            next(new TokenError('Неправильные почта или пароль'));
           }
         })
         .catch(next);

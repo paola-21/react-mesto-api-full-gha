@@ -17,11 +17,12 @@ const getUsersbyId = (req, res, next) => {
     .then((user) => res.status(200).send(user))
     .catch((err) => {
       if (err.message === 'Not found') {
-        return next(new NotFoundError('Запрашиваемый пользователь не найден'));
+        next(new NotFoundError('Запрашиваемый пользователь не найден'));
       } if (err.name === 'CastError') {
-        return next(new ErrNotAuth('Переданы некорректные данные'));
+        next(new ErrNotAuth('Переданы некорректные данные'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 
@@ -30,9 +31,10 @@ const getUser = (req, res, next) => {
     .then((user) => res.send({ data: user }))
     .catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {
-        return next(new ErrNotAuth('Переданы некорректные данные'));
+        next(new ErrNotAuth('Переданы некорректные данные'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 
@@ -45,9 +47,10 @@ const editProfileUser = (req, res, next) => {
     .then((user) => res.send({ data: user }))
     .catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {
-        return next(new ErrNotAuth('Переданы некорректные данные'));
+        next(new ErrNotAuth('Переданы некорректные данные'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 
@@ -60,9 +63,10 @@ const editAvatarUser = (req, res, next) => {
     .then((user) => res.status(200).send({ data: user }))
     .catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {
-        return next(new ErrNotAuth('Переданы некорректные данные'));
+        next(new ErrNotAuth('Переданы некорректные данные'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 
