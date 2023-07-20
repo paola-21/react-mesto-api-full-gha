@@ -4,8 +4,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const ErrNotAuth = require('../utils/NotErrAuth');
-const DuplicateEmail = require('../utils/DublicateEmail');
-const TokenError = require('../utils/TokenError');
+const DuplicateEmail = require('../utils/DublicateEmail');// 400
+const TokenError = require('../utils/TokenError');// 401
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
@@ -20,9 +20,9 @@ const createUser = (req, res, next) => {
         })
         .catch((err) => {
           if (err.code === 11000) {
-            throw new DuplicateEmail('Пользователь с такой почтой уже существует');
+            return next(new DuplicateEmail('Пользователь с такой почтой уже существует'));
           } if (err.name === 'ValidationError') {
-            throw new ErrNotAuth('Переданы некоректные данные');
+            return next(new ErrNotAuth('Переданы некоректные данные'));
           }
           next(err);
         });
@@ -46,7 +46,7 @@ const login = (req, res, next) => {
             });
             res.send({ token: jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' }) });
           } else {
-            throw new TokenError('Неправильные почта или пароль');
+            return next(new TokenError('Неправильные почта или пароль'));
           }
         })
         .catch(next);
