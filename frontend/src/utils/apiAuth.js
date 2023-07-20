@@ -8,7 +8,7 @@ const getResponseData = (res) => {
 };
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
-    //credentials: 'include',
+    credentials: 'include',
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -19,7 +19,7 @@ export const register = (email, password) => {
 
 export const authorize = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
-    //credentials: 'include',
+    credentials: 'include',
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -33,7 +33,7 @@ export const authorize = (email, password) => {
 export const checkToken = (token) => {
   //const token = localStorage.getItem('token');
   return fetch(`${BASE_URL}/users/me`, {
-    //credentials: 'include',
+    credentials: 'include',
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -44,3 +44,20 @@ export const checkToken = (token) => {
     .then((res) => res.json())
     .then((data) => data);
 };
+
+
+// export const checkToken = async() => {
+//   const token = localStorage.getItem('token');
+//   return fetch(`${BASE_URL}/users/me`, {
+//     //credentials: 'include',
+//     method: "GET",
+//     headers: {
+//       Accept: "application/json",
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${token}`,
+//     },
+//   })
+//     .then((res) => res.json())
+//     .then((data) => data);
+// };
+

@@ -9,8 +9,8 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 51.250.105.234
 
-Frontend https://...
+Frontend https://paola.mesto.nomoreparties.sbs
 
-Backend https://...
+Backend https://api.paola.mesto.nomoreparties.sbs
