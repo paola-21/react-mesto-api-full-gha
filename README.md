@@ -1,16 +1,19 @@
-[![Статус тестов](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
+# проект Мesto
+Приложение, позволяющее пользователю редактировать профиль и аватар, добавять новые фотографии, удалять свои фотографии, лайкать и дизлайкать фотографии пользователей.
 
-# react-mesto-api-full
-Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. Бэкенд расположите в директории `backend/`, а фронтенд - в `frontend/`. 
-  
-Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
+## Технологии
+* HTML5;
+* CSS;
+* Flexbox;
+* GRID;
+* Файловая структура по BEM;
+* JavaScript;
+* React (функциональные компоненты и хуки);
+* Media-запросы для большинства устройств;
+* Node.js;
+* Express;
+* MongodDB;
 
-Адрес репозитория: https://github.com/paola-21/react-mesto-api-full-gha
+Alt-H1
 
-## Ссылки на проект
-
-IP 51.250.105.234
-
-Frontend https://paola.mesto.nomoreparties.sbs
-
-Backend https://api.paola.mesto.nomoreparties.sbs
+Mesto [https://paola.mesto.nomoreparties.sbs]

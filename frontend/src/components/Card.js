@@ -14,10 +14,10 @@ export default function Card({
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
   const isLiked = card.likes.some((i) => i === currentUser._id);
 
-  // Создаём переменную, которую после зададим в `className` для кнопки лайка
-  const cardLikeButtonClassName = `element__like ${
-    isLiked && "element__like_aktive"
-  }`;
+     // Создаём переменную, которую после зададим в `className` для кнопки лайка
+     const cardLikeButtonClassName = `movies-list__button-save ${
+      isLiked || "movies-list__button-save__activ"
+    }`;
 
   function handleClick() {
     onCardClick(card);
