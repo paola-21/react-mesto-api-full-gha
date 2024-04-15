@@ -31,7 +31,7 @@
 * MongodDB;
 
 ## Установка и запуск приложения в локальном репозитории, эксплуатация
-1. git clone https://github.com/elrouss/react-mesto-api-full-gha.git - клонировать репозиторий (HTTPS) на свое устройство;
+1. git clone https://github.com/paola-21/react-mesto-api-full-gha.git - клонировать репозиторий (HTTPS) на свое устройство;
 2. npm i - установить зависимости (отдельно - в папке frontend и backend);
 3. npm run dev - запустить приложение в режиме разработчика в папке backend (можно предварительно настроить порт 3001);
 4. npm run start - запустить приложение в режиме разработчика в папке frontend;
